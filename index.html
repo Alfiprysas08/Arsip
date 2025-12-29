@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARSIP — Refleksi Tahunan</title>
+
+  <!-- Optional font (boleh hapus kalau tidak mau pakai font Google) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <noscript>
+    <div style="padding:12px; background:#111827; color:#fff; font-family:system-ui,Arial,sans-serif;">
+      Website ini membutuhkan JavaScript untuk berjalan.
+    </div>
+  </noscript>
+
+  <!-- Background decorative layer -->
+  <div class="bg-layer" aria-hidden="true"></div>
+
+  <!-- ====== AUTH GATE (REGISTER / LOGIN) ====== -->
+  <main id="authGate" class="auth-gate">
+    <section class="auth-card" aria-label="Autentikasi">
+      <header class="brand">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div class="brand-text">
+          <p class="brand-top">Akar Literasi</p>
+          <h1 class="brand-title">ARSIP</h1>
+          <p class="brand-sub">Akar Literasi Sharing Inspiration</p>
+          <p class="brand-tagline">Menata Jejak, Menyemai Gagasan 2026</p>
+        </div>
+      </header>
+
+      <div class="auth-tabs" role="tablist" aria-label="Pilih Login atau Daftar">
+        <button class="tab-btn is-active" type="button" role="tab"
+                aria-selected="true" aria-controls="panelLogin" id="tabLogin">
+          Login
+        </button>
+        <button class="tab-btn" type="button" role="tab"
+                aria-selected="false" aria-controls="panelRegister" id="tabRegister">
+          Daftar
+        </button>
+      </div>
+
+      <!-- LOGIN -->
+      <section id="panelLogin" class="tab-panel is-active" role="tabpanel" aria-labelledby="tabLogin">
+        <h2 class="panel-title">Masuk</h2>
+        <p class="panel-desc">Masuk untuk mengakses refleksi tahunan Anda.</p>
+
+        <form id="loginForm" class="form">
+          <label class="field">
+            <span class="label">Email</span>
+            <input id="loginEmail" name="email" type="email"
+                   autocomplete="email" required placeholder="contoh: kamu@email.com" />
+          </label>
+
+          <label class="field">
+            <span class="label">Password</span>
+            <input id="loginPassword" name="password" type="password"
+                   autocomplete="current-password" required placeholder="••••••••" />
+          </label>
+
+          <button class="btn btn-primary" type="submit">Login</button>
+
+          <p class="helper">
+            Belum punya akun?
+            <button class="linklike" type="button" id="goRegister">Daftar di sini</button>
+          </p>
+        </form>
+      </section>
+
+      <!-- REGISTER -->
+      <section id="panelRegister" class="tab-panel" role="tabpanel" aria-labelledby="tabRegister" hidden>
+        <h2 class="panel-title">Daftar</h2>
+        <p class="panel-desc">Buat akun agar jawaban refleksi tersimpan.</p>
+
+        <form id="registerForm" class="form">
+          <label class="field">
+            <span class="label">Email</span>
+            <input id="regEmail" name="email" type="email"
+                   autocomplete="email" required placeholder="contoh: kamu@email.com" />
+          </label>
+
+          <label class="field">
+            <span class="label">Password</span>
+            <input id="regPassword" name="password" type="password"
+                   autocomplete="new-password" required placeholder="minimal 6 karakter" />
+          </label>
+
+          <label class="field">
+            <span class="label">Konfirmasi Password</span>
+            <input id="regPassword2" name="password2" type="password"
+                   autocomplete="new-password" required placeholder="ulang password" />
+          </label>
+
+          <button class="btn btn-primary" type="submit">Buat Akun</button>
+
+          <p class="helper">
+            Sudah punya akun?
+            <button class="linklike" type="button" id="goLogin">Login</button>
+          </p>
+        </form>
+      </section>
+
+      <div id="authMessage" class="message" role="status" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <!-- ====== APP (AFTER LOGIN) ====== -->
+  <div id="app" class="app" hidden>
+    <!-- Top bar -->
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="topbar-left">
+          <div class="logo-mini">
+  <img src="Logo Akar.jpeg" alt="Logo Akar Literasi" />
+</div>
+<div>
+    
+            <p class="mini-kicker">ARSIP • Akar Literasi Sharing Inspiration</p>
+            <h1 class="mini-title">Refleksi Tahunan</h1>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <span class="user-pill" id="userPill">👤 <span id="currentUser">User</span></span>
+          <button class="btn btn-ghost" id="logoutBtn" type="button">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="container">
+      <!-- Hero / Ayat -->
+      <section class="hero">
+        <h2 class="hero-title">Menata Jejak 2025, Menyemai Gagasan 2026</h2>
+
+        <div class="verse">
+          <p class="verse-ar" lang="ar" dir="rtl">
+            يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَلْتَنْظُرْ نَفْسٌ مَا قَدَّمَتْ لِغَدٍ ۖ وَاتَّقُوا اللَّهَ ۚ إِنَّ اللَّهَ خَبِيرٌ بِمَا تَعْمَلُونَ
+          </p>
+          <p class="verse-id">
+            <strong>QS. Al-Hasyr: 18</strong>  “Wahai orang-orang yang beriman! Bertakwalah kepada Allah dan hendaklah setiap diri memperhatikan apa yang telah diperbuatnya untuk hari esok (akhirat)…”
+          </p>
+        </div>
+
+        <p class="hero-desc">
+          Refleksi ini bukan untuk menghakimi diri, tetapi untuk menyadari, mensyukuri, dan menata ulang arah 
+          
+        </p>
+      </section>
+
+      <!-- NAV main -->
+      <nav class="main-nav" aria-label="Navigasi Refleksi">
+        <button class="nav-btn is-active" type="button" data-view="umum">Refleksi Umum</button>
+        <button class="nav-btn" type="button" data-view="personal">Refleksi Personal</button>
+      </nav>
+
+      <!-- ===== VIEW: UMUM ===== -->
+      <section id="viewUmum" class="view is-active" aria-label="Refleksi Umum">
+        <div class="section-head">
+          <h3 class="section-title">Refleksi Umum</h3>
+          <p class="section-desc">
+            Refleksi nilai dan kualitas ibadah selama setahun melalui dua perjalanan:
+            <strong>Mi'raj</strong> (vertikal) dan <strong>Isra</strong> (horizontal).
+          </p>
+        </div>
+
+        <!-- Subtabs: Miraz / Isra -->
+        <div class="subtabs" role="tablist" aria-label="Pilih Miraz atau Isra">
+          <button class="subtab-btn is-active" type="button" role="tab" aria-selected="true" data-subview="miraz">
+            Mi'raj (Amaliyah)
+          </button>
+          <button class="subtab-btn" type="button" role="tab" aria-selected="false" data-subview="isra">
+            Isra (Muamalah)
+          </button>
+        </div>
+
+        <!-- MIRAZ -->
+        <section id="subMiraz" class="subview is-active" aria-label="Miraz (Amaliyah)">
+          <div class="cards">
+            <article class="card">
+              <header class="card-head">
+                <h4 class="card-title">1) Sholat (Fundamental)</h4>
+                <p class="card-desc">Seberapa berhasilkah kita menjadikan sholat sebagai perbaikan aqidah kita?</p>
+              </header>
+              <label class="field">
+                <span class="label">Jawaban Anda</span>
+                <textarea class="textarea" rows="6" data-group="miraz" data-key="sholat_fundamental"
+                  placeholder="Tulis refleksi Anda di sini..."></textarea>
+              </label>
+            </article>
+
+            <article class="card">
+              <header class="card-head">
+                <h4 class="card-title">2) Sunnah (Uswatun Hasanah)</h4>
+                <p class="card-desc">Seberapa konsisten amalan sunnah kita (shalat sunnah dan puasa sunnah)?</p>
+              </header>
+              <label class="field">
+                <span class="label">Jawaban Anda</span>
+                <textarea class="textarea" rows="6" data-group="miraz" data-key="sunnah_uswatun_hasanah"
+                  placeholder="Tulis refleksi Anda di sini..."></textarea>
+              </label>
+            </article>
+
+            <article class="card">
+              <header class="card-head">
+                <h4 class="card-title">3) Puasa (Pelatihan Karakter)</h4>
+                <p class="card-desc">Bagaimana kualitas puasa Ramadan dan hasil pembelajaran setelah Ramadan?</p>
+              </header>
+              <label class="field">
+                <span class="label">Jawaban Anda</span>
+                <textarea class="textarea" rows="6" data-group="miraz" data-key="puasa_pelatihan_karakter"
+                  placeholder="Tulis refleksi Anda di sini..."></textarea>
+              </label>
+            </article>
+
+            <article class="card">
+              <header class="card-head">
+                <h4 class="card-title">4) Quran (Solusi Hidup)</h4>
+                <p class="card-desc">Seberapa konsisten membaca, memahami, dan mengamalkan Al-Qur’an?</p>
+              </header>
+              <label class="field">
+                <span class="label">Jawaban Anda</span>
+                <textarea class="textarea" rows="6" data-group="miraz" data-key="quran_solusi_hidup"
+                  placeholder="Tulis refleksi Anda di sini..."></textarea>
+              </label>
+            </article>
+
+            <article class="card">
+              <header class="card-head">
+                <h4 class="card-title">5) Dzikir (Ketenangan)</h4>
+                <p class="card-desc">Seberapa sering dzikir dan doa hadir dalam keseharian?</p>
+              </header>
+              <label class="field">
+                <span class="label">Jawaban Anda</span>
+                <textarea class="textarea" rows="6" data-group="miraz" data-key="dzikir_ketenangan"
+                  placeholder="Tulis refleksi Anda di sini..."></textarea>
+              </label>
+            </article>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" type="button" id="saveMirazBtn">Simpan</button>
+            <span class="save-status" id="mirazStatus" role="status" aria-live="polite"></span>
+          </div>
+        </section>
+
+        <!-- ISRA -->
+        <section id="subIsra" class="subview" aria-label="Isra (Muamalah)" hidden>
+          <div class="cards">
+            <article class="card">
+              <header class="card-head">
+                <h4 class="card-title">1) Bekerja/Belajar (Tawazun)</h4>
+                <p class="card-desc">
+                  Seberapa konsisten kita menjadikan sifat-sifat Rasulullah SAW dalam menjalankan peran bekerja atau belajar?
+                </p>
+              </header>
+              <label class="field">
+                <span class="label">Jawaban Anda</span>
+                <textarea class="textarea" rows="6" data-group="isra" data-key="bekerja_belajar_tawazun"
+                  placeholder="Tulis refleksi Anda di sini..."></textarea>
+              </label>
+            </article>
+
+            <article class="card">
+              <header class="card-head">
+                <h4 class="card-title">2) Silaturahmi (Shilah)</h4>
+                <p class="card-desc">Bagaimana kita membangun silaturahmi dengan keluarga, rekan, teman, dan masyarakat?</p>
+              </header>
+              <label class="field">
+                <span class="label">Jawaban Anda</span>
+                <textarea class="textarea" rows="6" data-group="isra" data-key="silaturahmi_shilah"
+                  placeholder="Tulis refleksi Anda di sini..."></textarea>
+              </label>
+            </article>
+
+            <article class="card">
+              <header class="card-head">
+                <h4 class="card-title">3) Perniagaan (Tijarah lan Tabur)</h4>
+                <p class="card-desc">Sudahkah ilmu, harta, dan waktu kita memberi manfaat di jalan Allah?</p>
+              </header>
+              <label class="field">
+                <span class="label">Jawaban Anda</span>
+                <textarea class="textarea" rows="6" data-group="isra" data-key="perniagaan_tijarah_tabur"
+                  placeholder="Tulis refleksi Anda di sini..."></textarea>
+              </label>
+            </article>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" type="button" id="saveIsraBtn">Simpan</button>
+            <span class="save-status" id="israStatus" role="status" aria-live="polite"></span>
+          </div>
+        </section>
+      </section>
+
+      <!-- ===== VIEW: PERSONAL ===== -->
+      <section id="viewPersonal" class="view" aria-label="Refleksi Personal" hidden>
+        <div class="section-head">
+          <h3 class="section-title">Refleksi Personal</h3>
+          <p class="section-desc">
+            Tulis pencapaian selama 2025 dan rencana perbaikan/pengembangan yang akan dilanjutkan di 2026.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <header class="card-head">
+              <h4 class="card-title">Pencapaian 2025</h4>
+              <p class="card-desc">Apa saja yang berhasil Anda capai selama tahun 2025?</p>
+            </header>
+            <label class="field">
+              <span class="label">Jawaban Anda</span>
+              <textarea class="textarea" rows="10" data-group="personal" data-key="pencapaian_2025"
+                placeholder="Tulis poin-poin pencapaian Anda..."></textarea>
+            </label>
+          </article>
+
+          <article class="card">
+            <header class="card-head">
+              <h4 class="card-title">Pengembangan 2026</h4>
+              <p class="card-desc">Perbaikan/pengembangan apa yang akan Anda lanjutkan di 2026?</p>
+            </header>
+            <label class="field">
+              <span class="label">Jawaban Anda</span>
+              <textarea class="textarea" rows="10" data-group="personal" data-key="pengembangan_2026"
+                placeholder="Tulis rencana pengembangan Anda..."></textarea>
+            </label>
+          </article>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" type="button" id="savePersonalBtn">Simpan Refleksi Personal</button>
+          <span class="save-status" id="personalStatus" role="status" aria-live="polite"></span>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p class="footer-top">ARSIP • Akar Literasi Sharing Inspiration</p>
+        <p class="footer-sub">@akar.literasi</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- APP SCRIPT (Firebase Auth + RTDB) -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
